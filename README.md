@@ -1,12 +1,13 @@
 # opencode-warp-v2
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/Clevers-Dev/opencode-warp-v2/actions/workflows/ci.yml/badge.svg)](https://github.com/Clevers-Dev/opencode-warp-v2/actions)
 [![Warp Compatible](https://img.shields.io/badge/Warp-Terminal-00C7B7.svg)](https://warp.dev)
 [![OpenCode v2 Compatible](https://img.shields.io/badge/OpenCode-v2.0%2B-green.svg)](https://opencode.ai)
 
 Native **[Warp Terminal](https://warp.dev)** integration plugin specifically designed for **OpenCode 2.0+**.
 
-Bridges OpenCode 2.0's event engine directly to Warp, giving you real-time visual status, animated spinners, multi-tab awareness, and native notifications.
+Bridges OpenCode 2.0's event engine directly to Warp, giving you real-time visual status, native tab progress bars (`OSC 9;4`), animated spinners, multi-tab awareness, audio chimes, and native notifications.
 
 ---
 
@@ -28,8 +29,9 @@ The legacy `@warp-dot-dev/opencode-warp` plugin was written for OpenCode v1 and 
   - Tool execution: `⚡ [OpenCode] <tool>...`
   - Completed: `✅ [OpenCode] Listo`
   - Waiting for permissions: `⚠️ [OpenCode] Esperando permiso...`
+- 📊 **Native Tab Progress Bar (`OSC 9;4`)**: Puts a progress pulse directly on the Warp tab while processing, and clears it cleanly upon completion.
 - 🚀 **Warp CLI Agent Protocol (`warp://cli-agent`)**: Sends native `prompt_submit` and `stop` signals so Warp spins the tab spinner while OpenCode works and stops it when done.
-- 🔔 **Native Warp Notifications**: In-app and desktop notifications (OSC 777 / OSC 9) upon completion.
+- 🔔 **Native Warp Notifications & Chime**: In-app and desktop notifications (OSC 777 / OSC 9) plus terminal bell upon completion.
 - 🪟 **True Windows & POSIX Console Support**: Writes directly to `//./CONOUT$` on Windows and `/dev/tty` on Unix/macOS, completely bypassing the TUI render pipe.
 - 🤝 **Coexists with `opencode-notifier`**: Runs seamlessly alongside `@mohak34/opencode-notifier` without conflicts.
 
@@ -37,7 +39,7 @@ The legacy `@warp-dot-dev/opencode-warp` plugin was written for OpenCode v1 and 
 
 ## 📦 Installation
 
-### Automatic Global Discovery (Recommended)
+### Option 1: Automatic Global Discovery (Recommended)
 
 Clone this repository directly into your OpenCode global plugins folder:
 

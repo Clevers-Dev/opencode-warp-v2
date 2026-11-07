@@ -59,6 +59,8 @@ const plugin = {
             case 'session.busy': {
               // Tab title en Warp: Pensando / Trabajando
               emitToTerminal('\x1b]0;⏳ [OpenCode] Pensando...\x07');
+              // Barra de progreso nativa en la pestaña (OSC 9;4 estado 1: indeterminado)
+              emitToTerminal('\x1b]9;4;1;0\x07');
               sendWarpEvent('prompt_submit', sessionID, {
                 query: 'Trabajando...'
               });
@@ -69,26 +71,34 @@ const plugin = {
             case 'session.idle': {
               // Tab title en Warp: Listo
               emitToTerminal('\x1b]0;✅ [OpenCode] Listo\x07');
+              // Limpiar barra de progreso
+              emitToTerminal('\x1b]9;4;0;0\x07');
               sendWarpEvent('stop', sessionID, {
                 response: 'Listo'
               });
               // Notificaciones de escritorio nativas en Warp
               emitToTerminal('\x1b]777;notify;OpenCode;¡Tarea completada! Listo para continuar.\x07');
               emitToTerminal('\x1b]9;OpenCode: Tarea completada\x07');
+              // Chime / campana de terminal
+              emitToTerminal('\x07');
               break;
             }
 
             case 'session.execution.failed': {
               emitToTerminal('\x1b]0;❌ [OpenCode] Error\x07');
+              // Estado de error en la pestaña (rojo)
+              emitToTerminal('\x1b]9;4;3;0\x07');
               sendWarpEvent('stop', sessionID, {
                 response: 'Error en la tarea'
               });
               emitToTerminal('\x1b]777;notify;OpenCode;Error en la ejecucion\x07');
+              emitToTerminal('\x07');
               break;
             }
 
             case 'session.execution.interrupted': {
               emitToTerminal('\x1b]0;⏹️ [OpenCode] Detenido\x07');
+              emitToTerminal('\x1b]9;4;0;0\x07');
               sendWarpEvent('stop', sessionID, {
                 response: 'Detenido'
               });
@@ -97,16 +107,20 @@ const plugin = {
 
             case 'permission.asked': {
               emitToTerminal('\x1b]0;⚠️ [OpenCode] Esperando permiso...\x07');
+              // Estado de pausa / alerta
+              emitToTerminal('\x1b]9;4;2;100\x07');
               sendWarpEvent('permission_request', sessionID, {
                 summary: 'Requiere confirmacion de usuario'
               });
               emitToTerminal('\x1b]777;notify;OpenCode;Esperando confirmacion de permisos...\x07');
+              emitToTerminal('\x07');
               break;
             }
 
             case 'session.tool.input.started': {
               const toolName = event.data?.name || 'herramienta';
               emitToTerminal(`\x1b]0;⚡ [OpenCode] ${toolName}...\x07`);
+              emitToTerminal('\x1b]9;4;1;0\x07');
               sendWarpEvent('tool_complete', sessionID, {
                 tool_name: toolName
               });
