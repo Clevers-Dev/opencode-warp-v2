@@ -1,0 +1,30 @@
+{
+  "name": "opencode-warp-v2",
+  "version": "1.0.0",
+  "description": "Native Warp Terminal integration for OpenCode 2.0+ with real-time multi-tab visual status, agent protocol, and notifications",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "author": {
+    "name": "Clevers Dev",
+    "url": "https://github.com/Clevers-Dev"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Clevers-Dev/opencode-warp-v2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clevers-Dev/opencode-warp-v2"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "opencode-2",
+    "warp",
+    "warp-terminal",
+    "tabs",
+    "notifications",
+    "agent"
+  ]
+}
