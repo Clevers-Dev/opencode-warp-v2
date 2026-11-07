@@ -76,9 +76,8 @@ const plugin = {
               sendWarpEvent('stop', sessionID, {
                 response: 'Listo'
               });
-              // Notificaciones de escritorio nativas en Warp
+              // Notificacion UNICA en Warp (OSC 777)
               emitToTerminal('\x1b]777;notify;OpenCode;¡Tarea completada! Listo para continuar.\x07');
-              emitToTerminal('\x1b]9;OpenCode: Tarea completada\x07');
               // Chime / campana de terminal
               emitToTerminal('\x07');
               break;
